@@ -1,2 +1,13 @@
-# Calculator
-SimpleCalc is a clean and easy-to-use calculator app that handles basic arithmetic operations like addition, subtraction, multiplication, and division. Perfect for quick everyday calculations!
+# 🔢 SimpleCalc – Basic Calculator App
+
+**SimpleCalc** is a lightweight calculator app designed for quick and easy arithmetic operations. It’s ideal for everyday use with a simple interface and core functionality.
+
+## ✅ Features
+
+- Addition (`+`)
+- Subtraction (`-`)
+- Multiplication (`×`)
+- Division (`÷`)
+- All Clear (AC) support
+- Responsive UI for mobile and tablet
+  
