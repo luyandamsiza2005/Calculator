@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+    <table >
+        <tr>
+            <td colspan="4" id="table-data-input"><input type = "text" id= "inputBox" placeholder="0" value=""></td>
+        </tr>
+        
+        <tr>
+            <td onclick="digitBtnPressed(7)" class="digitBtn">7</td>
+            <td onclick="digitBtnPressed(8)" class="digitBtn">8</td>
+            <td onclick="digitBtnPressed(9)" class="digitBtn">9</td>
+            <td onclick="operatorPressed('*')" class="operatorBtn">x</td>
+        </tr>
+
+        <tr>
+            <td onclick="digitBtnPressed(4)" class="digitBtn">4</td>
+            <td onclick="digitBtnPressed(5)" class="digitBtn">5</td>
+            <td onclick="digitBtnPressed(6)" class="digitBtn">6</td>
+            <td onclick="operatorPressed('-')"  class="operatorBtn">-</td>
+        </tr>
+        
+        <tr>
+            <td onclick="digitBtnPressed(1)" class="digitBtn">1</td>
+            <td onclick="digitBtnPressed(2)" class="digitBtn">2</td>
+            <td onclick="digitBtnPressed(3)" class="digitBtn">3</td>
+            <td onclick="operatorPressed('+')"  class="operatorBtn">+</td>
+        </tr>
+        
+        <tr>
+            <td colspan="2" onclick="digitBtnPressed(0)" class="digitBtn">0</td>
+            <td  onclick="clearInputBox()" class="ACBtn">AC</td>
+            <td onclick="operatorPressed('/')"  class="operatorBtn">/</td>
+        </tr>
+        
+        <tr>
+            <td class="operatorBtn">,</td>
+            <td colspan="3" onclick="equal()"  class="operatorBtn">=</td>
+        </tr>
+        
+        
+        </table>
+        
+        <script>
+        
+            var value1 = 0;
+            var symbolChosen;
+            
+            //button pressed function
+            function digitBtnPressed(button)
+            {
+                
+                var currentInput = document.getElementById("inputBox").value;
+                
+                document.getElementById("inputBox").value = currentInput + button;
+            }
+            
+            //clearing inputbox function
+            function clearInputBox()
+            {
+                document.getElementById("inputBox").value = "";
+                value1 = '';
+                symbolChosen = '';
+                
+            }     
+            
+            function operatorPressed(operator)
+            {
+                var currentInput = parseFloat(document.getElementById("inputBox").value);
+                
+                    if (symbolChosen) 
+                    {
+                        // Calculate the previous operation first, update value1
+                        switch (symbolChosen) 
+                        {
+                            case '+':
+                                value1 = value1 + currentInput;
+                                break;
+                            case '-':
+                                value1 = value1 - currentInput;
+                                break;
+                            case '*':
+                                value1 = value1 * currentInput;
+                                break;
+                            case '/':
+                                value1 = currentInput !== 0 ? value1 / currentInput : 'Error';
+                                break;
+                        }
+                    } 
+                else 
+                {
+                // No previous operation, just store current input in value1
+                value1 = currentInput;
+                }
+                
+                
+                symbolChosen = operator;
+                //reset for the next input
+                document.getElementById("inputBox").value = '';
+                
+                
+            }
+            
+            function equal()
+            {
+               var value2 = document.getElementById("inputBox").value;
+                
+               var num1 = parseFloat(value1);
+               var num2 = parseFloat(value2);
+               var result;
+               
+               switch (symbolChosen)
+                    {
+                        case '+':
+                            result = num1 + num2;
+                            break;
+                        case '-':
+                            result = num1 - num2;
+                            break;
+                        case '*':
+                            result = num1 * num2;
+                            break;
+                        case '/':
+                            result = num1 / num2;
+                            break;
+                        default:
+                            result = 'invalid';
+                    }
+                document.getElementById("inputBox").value = result;
+                value1 = 0;
+                symbolChosen = '';
+            }
+            
+        </script>
+    </body>
+        
+
+
+</html>
